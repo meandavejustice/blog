@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<head>
+  <link rel="stylesheet" href="/public/vendor/highlight.js/src/styles/ir_black.css">
+  <link rel="stylesheet" href="/public/styles/main.css" type="text/css" media="screen" />
+</head>
+<body>
+
+  <hr>
+<p>layout: post</p>
+<h2 id="tags-portland-open-source-web-development-coding-hack-node-node-modules-man-man-pages-unix-marked-man-npm-">tags: [portland, open source, web development, coding, hack, node, node modules, man, man pages, unix, marked man, npm]</h2>
+<p>I&#39;ve been thinking a lot lately about documentation. The node
+community is somewhat known for having poor documentation and issues
+with discoverablity. While the python community has fantastic tools
+like <a href="https://readthedocs.org/">Read the Docs</a>, we are many times left
+with a single readme.</p>
+<h3 id="keeping-everything-small">Keeping everything small</h3>
+<p>Our &quot;One readme per package&quot; practice fits in well with the small
+module philosophy. But It can be painful digging around in
+<code>node-modules</code> directories looking for that readme. Users generally
+will just open up the repo and view the nicely formatted markdown in
+the github ui. But what about offline development? This was a pain
+point for us mentors at the most recent NodeSchool.io. Specifically
+digging around for Async docs when students were continually being
+booted off of the WiFi.</p>
+<h3 id="man-package-name-">man {package-name}</h3>
+<p>Being that our community loves to follow the
+<a href="http://blog.izs.me/post/48281998870/unix-philosophy-and-node-js">unix philosophy</a>
+why not take advantage of tools developers are already familiar with?
+Lets generate man pages for all of our node modules.</p>
+<h3 id="man-page-generation">man page generation</h3>
+<p>Generating man pages out of existing readme&#39;s is extremely straight
+forward. There&#39;s already a module for that.</p>
+<p>Go ahead and install <a href="https://github.com/kapouer/marked-man">marked-man</a></p>
+<p><code>npm install -g marked-man</code></p>
+<p>Now we just need to point marked-man to the markdown file we want to
+generate our manpage from.</p>
+<p><code>marked-man README.md &gt; doc/package-name.1</code></p>
+<p>Try it out by running</p>
+<p><code>man path/to/manpage</code></p>
+<p>You should get something like this.</p>
+<p><img src="http://i.imgur.com/99ZZX9M.png" alt=""></p>
+<p>Now all we need to do is let npm know about our manpage. We&#39;ll edit
+our package.JSON.</p>
+<p><img src="http://i.imgur.com/n1exAjl.png" alt=""></p>
+<p>If the module is installed globally with npm it will copy the manpages
+from the path specified in the <code>man</code> property to
+<code>{prefix}/share/man</code>.</p>
+<p>It&#39;s as simple as that. If you&#39;d like to dig in a little bit deeper on
+this subject take a look at these resources.</p>
+<ul>
+<li><a href="http://dailyjs.com/2012/02/16/unix-node-community/">Unix and Node: Manual Pages</a></li>
+<li><a href="http://www.fnal.gov/docs/products/ups/ReferenceManual/html/manpages.html">Formatting Man Pages</a></li>
+<li><a href="https://github.com/kapouer/marked-man">Marked-man</a></li>
+<li><a href="https://www.npmjs.org/doc/files/package.json.html#man">man npm docs</a></li>
+</ul>
+<p>If your never without an internet connection or just hate man pages
+you can always run the</p>
+<p><a href="https://www.npmjs.org/doc/cli/npm-docs.html">npm docs ...</a> command:</p>
+<p><code>npm docs {package-name}</code></p>
+<p>Go forth and generate more accessible documentation!</p>
+<h2 id="update">UPDATE</h2>
+<p>The npm feature written about in this blog post is currently not
+working. You can track the issue
+<a href="https://github.com/npm/npm/issues/4768">here</a>.</p>
+
+
+  <script src="/public/vendor/highlight.js/build/highlight.pack.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script>
+</body>
