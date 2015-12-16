@@ -19,17 +19,16 @@
 <!-- layout: post -->
 <!-- tags: [portland, web development, ubuntu, python, trusty, ffmpeg, audio] -->
 <!-- --- -->
-
 <h2 id="installing-ffmpeg-on-ubuntu-trusty">Installing FFMPEG on Ubuntu Trusty</h2>
 <p>Attempting to install <a href="http://ffmpeg.org/">ffmpeg</a> onto a fresh install of Ubuntu 14.04 x32 (Trusty)
 I got this Error:</p>
-<pre><code class="lang-bash">No candidate <span class="hljs-keyword">version</span> found <span class="hljs-keyword">for</span> ffmpeg
+<pre><code class="lang-bash"><span class="hljs-keyword">No</span> candidate <span class="hljs-keyword">version</span> found <span class="hljs-keyword">for</span> ffmpeg
 </code></pre>
 <p>It just so happens that Jon Severinsson has a <a href="https://launchpad.net/~jon-severinsson/+archive/ffmpeg">ppa</a>.</p>
 <p>All you have to do is add, update, and install.</p>
-<pre><code class="lang-bash">sudo <span class="hljs-built_in">add</span>-apt-repository <span class="hljs-keyword">pp</span><span class="hljs-variable">a:jon</span>-severinsson/ffmpeg
-sudo apt-<span class="hljs-built_in">get</span> <span class="hljs-keyword">update</span>
-sudo apt-<span class="hljs-built_in">get</span> install ffmpeg
+<pre><code class="lang-bash">sudo<span class="hljs-instruction"> add-apt-repository </span>ppa:jon-severinsson/ffmpeg
+sudo apt-get update
+sudo apt-get install ffmpeg
 </code></pre>
 <p>Now go forth and build something rad with <a href="http://pydub.com/">pyDub</a>!</p>
 
