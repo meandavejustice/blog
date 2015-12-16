@@ -42,6 +42,12 @@ ls('./posts')
   posts.push(getPostData(data.path))
 })
 .on('end', function() {
+  // sort posts before looping over them to create html versions.
+  posts.sort(function(a, b) {
+    a = new Date(a.date);
+    b = new Date(b.date);
+    return a>b ? -1 : a<b ? 1 : 0;
+  });
   posts.forEach(function(post) {
     fs.readFile(post.filepath, function(err, body) {
 
@@ -51,8 +57,7 @@ ls('./posts')
       });
     })
   })
-
-  indexFile = indexFile({posts: posts.reverse()});
+  indexFile = indexFile({posts: posts});
   fs.writeFile('build/index.html', layout({content: indexFile}), function(err) {
     if (err) console.error('error writing index.html')
     console.log('wrote index.html')
